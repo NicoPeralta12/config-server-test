@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator: true
+      routes:
+        - id: cities-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/cities/**
+        - id: hotels-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/hotels/**
+server:
+  port: 8080
